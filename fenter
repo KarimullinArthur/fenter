@@ -1,0 +1,31 @@
+#!/usr/bin/python3
+"""
+Fenter - Format enters
+
+Formatting string from \n to one string.
+
+Example:
+```
+Hello World, this very
+long string.
+
+Bue World!
+```
+
+To
+```
+Hello World, this very long string.
+
+Bue World!
+```
+"""
+import sys
+
+
+HELP  = f"Usage:\n  {__file__.split('/')[-1]} file"
+
+if len(sys.argv) == 1:
+    print(HELP)
+else:
+    with open(sys.argv[-1]) as file:
+        print(file.read().replace("\n", " ").replace("  ", "\n\n"))
