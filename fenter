@@ -20,12 +20,20 @@ Bue World!
 ```
 """
 import sys
+import io
 
 
+    
 HELP  = f"Usage:\n  {__file__.split('/')[-1]} file"
 
+
+
 if len(sys.argv) == 1:
-    print(HELP)
+    try:
+        sys.stdin.tell()
+        print(sys.stdin.read().replace("\n", " ").replace("  ", "\n\n"))
+    except io.UnsupportedOperation:
+        print(HELP)
 else:
     with open(sys.argv[-1]) as file:
         print(file.read().replace("\n", " ").replace("  ", "\n\n"))
