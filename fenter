@@ -2,7 +2,7 @@
 """
 Fenter - Format enters
 
-Formatting string from \n to one string.
+Formatting string from \\n to one string.
 
 Example:
 ```
@@ -23,17 +23,28 @@ import sys
 import io
 
 
-    
-HELP  = f"Usage:\n  {__file__.split('/')[-1]} file"
+local_name_of_utility  = __file__.split('/')[-1]
 
+
+HELP  = f"Usage:\n  {local_name_of_utility} file"
+
+
+def to_format(data):
+    return data.replace("\n", " ").replace("  ", "\n\n")
 
 
 if len(sys.argv) == 1:
     try:
         sys.stdin.tell()
-        print(sys.stdin.read().replace("\n", " ").replace("  ", "\n\n"))
+        print(to_format(sys.stdin.read()))
     except io.UnsupportedOperation:
         print(HELP)
 else:
-    with open(sys.argv[-1]) as file:
-        print(file.read().replace("\n", " ").replace("  ", "\n\n"))
+    for file_name in sys.argv[1:]:
+        try:
+            with open(file_name) as file:
+                print(to_format(file.read()))
+                if len(sys.argv)-1 != sys.argv.index(file_name):
+                    print('\n\n')
+        except FileNotFoundError:
+            print(f'{local_name_of_utility}: {file_name}: No such file or directory')
