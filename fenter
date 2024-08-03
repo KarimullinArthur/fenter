@@ -48,7 +48,7 @@ def main():
                     if len(sys.argv)-1 != sys.argv.index(file_name):
                         print('\n\n')
             except FileNotFoundError:
-                print(f"{local_name_of_utility}: {file_name}: No such file or directory")
+                print(f"{local_name_of_utility}: {file_name}: No such file or directory", file=sys.stderr)
                 sys.exit(1)
 
 
