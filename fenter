@@ -2,21 +2,21 @@
 '''
 Fenter - Format enters
 
-Formatting string from \\n to one string.
+Formatting a string by replacing all "\n" with a single string.
 
 Example:
 ```
-Hello World, this very
+Hello World, this is a very
 long string.
 
-Bue World!
+Bye World!
 ```
 
 To
 ```
-Hello World, this very long string.
+Hello World, this is a very long string.
 
-Bue World!
+Bye World!
 ```
 '''
 import sys
