@@ -41,9 +41,13 @@ def main():
         except io.UnsupportedOperation:
             print(HELP)
     else:
+        if bool(set(sys.argv) & {'-h', '--help', 'help', './cli-todo'}):
+                print(HELP)
+                return
+
         for file_name in sys.argv[1:]:
             try:
-                with open(file_name) as file:
+               with open(file_name) as file:
                     print(to_format(file.read()))
                     if len(sys.argv)-1 != sys.argv.index(file_name):
                         print('\n\n')
